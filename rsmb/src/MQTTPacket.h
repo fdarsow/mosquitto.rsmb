@@ -17,6 +17,7 @@
 #if !defined(MQTTPACKET_H)
 #define MQTTPACKET_H
 
+#include <stdbool.h>
 #include "Socket.h"
 #include "LinkedList.h"
 #include "Clients.h"
@@ -27,7 +28,6 @@ include "LinkedList"
 include "Clients"
 BE*/
 
-typedef unsigned int bool;
 
 #define PRIVATE_PROTOCOL_VERSION 131  /**< protocol version used for noLocal subscriptions */
 #define BAD_MQTT_PACKET -4				/**< completion code for an ill-formed packet */
