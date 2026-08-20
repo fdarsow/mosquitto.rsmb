@@ -36,7 +36,6 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include <sys/timeb.h>
 
 #include "Heap.h"
 
@@ -264,14 +263,14 @@ int MQTTSProtocol_handleAdvertises(void* pack, int sock, char* clientAddr, Clien
 	char* topic = NULL;
 	char* data = NULL;
 	int offset = 0;
-	struct timeb ts;
+	struct timespec ts;
 	struct tm *timeinfo;
 
 	FUNC_ENTRY;
 	Log(LOG_PROTOCOL, 31, NULL, sock, "", clientAddr, advertisePack->gwId, advertisePack->duration);
 
-	ftime(&ts);
-	timeinfo = localtime(&ts.time);
+	clock_gettime(CLOCK_REALTIME, &ts);
+	timeinfo = localtime(&ts.tv_sec);
 
 	listener = Socket_getParentListener(sock);
 
